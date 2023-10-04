@@ -1,0 +1,51 @@
+
+.navBarnonSticky {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    background: linear-gradient(#9a93fa, pink);
+    padding: 0 2em;
+    text-shadow: 1px 1px 2px pink;
+    transition-property: height background;
+    transition-timing-function: ease-in-out;
+}
+
+.navBarSticky {
+    z-index: 2;
+    display: flex;
+    position: sticky;
+    top: 0;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    background: linear-gradient(#9a93fa, RGBA(0,0,0,0));
+    padding: 0 2em;
+    text-shadow: 1px 1px 2px pink;
+    transition-duration: 2s;
+    transition-property: height background;
+    transition-timing-function: ease-in-out;
+}
+
+[datatooltip] {
+    position: relative;
+}
+[datatooltip]::after {
+    content: attr(datatooltip);
+    box-sizing: content-box;
+    width: max-content;
+    position: absolute;
+    left: 0; top: 0;
+    background: #3989c9;
+    color: #fff;
+    padding: 0.5em;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    opacity: 0;
+    transition: 1s;
+}
+[datatooltip]:hover::after {
+    opacity: 1;
+    top: 2em;
+}
+

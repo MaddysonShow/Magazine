@@ -1,0 +1,47 @@
+.rightHidden {
+    z-index: 1;
+    display: flex;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 0;
+    height: 100%;
+    transition-property: width font-size;
+    transition-duration: 500ms;
+    transition-timing-function: ease-in-out;
+    background: linear-gradient(rgba(255, 192, 203, 0), #9a93fa);
+    font-size: 0px;
+}
+
+.rightShown {
+    display: flex;
+    position: absolute;
+    border-bottom-right-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    z-index: 1;
+    top: 50px;
+    left: 0;
+    height: 500px;
+    width: 250px;
+    background: linear-gradient(pink, #9a93fa);
+    transition-property: width font-size;
+    transition-duration: 500ms;
+    transition-timing-function: ease-in-out;
+}
+
+.rightStickyShow {
+    /*overflow-y: scroll;*/
+    display: flex;
+    position: absolute;
+    border-bottom-right-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    z-index: 1;
+    top: 50px;
+    left: 0;
+    height: 500px;
+    width: 250px;
+    background: linear-gradient(rgba(255, 192, 203, 0), #9a93fa);
+    transition-property: width font-size;
+    transition-duration: 500ms;
+    transition-timing-function: ease-in-out;
+}

@@ -4,17 +4,18 @@ import '../styles.module/ProductCards.module.css'
 import RatingStarsFunc from "./RatingStarsFuncAndMenu/RatingStarsFunc";
 import cartEmpty from '../media/shoppingEmpty.png'
 import FAC from "./FavouriteAndCart/FAC";
+import {useNavigate} from "react-router-dom";
 
 
 const ProductsCards = ({data}) => {
     // console.log('PCrender');
     const [forRerender, setRender] = useState(false)
+    const navigate = useNavigate()
     const RatingStars = (data) => RatingStarsFunc(data)
     const {setFavourite, getFavourite, getCart, setCart} = FAC()
     const toSingleProduct = (e) => {
         e.stopPropagation()
-        console.log(data.title);
-        console.log(data.rate)
+        navigate(`/product/?id=${data.id}`)
     }
 
     return (

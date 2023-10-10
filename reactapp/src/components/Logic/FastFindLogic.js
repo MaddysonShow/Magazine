@@ -11,7 +11,7 @@ export const FastFindLogic = (searchValue) => {
         FastTemporary.data = FastTemporary.data.filter((el) => {
             return el.title.toLowerCase().includes(searchValue.toLowerCase()) || el.category.toLowerCase().includes(searchValue.toLowerCase())
         })
-        console.log(fromStore);
+        // console.log(fromStore);
     }
     return FastTemporary
 }

@@ -20,15 +20,9 @@ export function redFav (state = defState, action) {
     if (action.type == SET_FAVOURITE) {
         return {...state, data: action.payload}
     }
-    else if (action.type == CLEAR_FAVOURITE) {
-        return {...state, data: []}
-    }
     else return state
 }
 
-export function clearFavState() {
-    return {type: CLEAR_FAVOURITE}
-}
 
 export function fetchFavourite(payload) {
     return {type: SET_FAVOURITE, payload: payload}

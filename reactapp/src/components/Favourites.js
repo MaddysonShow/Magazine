@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {clearFavState, fetchFavourite} from "../Redux/reducers";
+import {fetchFavourite} from "../Redux/reducers";
 import {useDispatch, useSelector} from "react-redux";
-import {FetchLogic} from "./fetching/ajax";
+import {FetchLogic} from "./fetching/fetch";
 import FavouriteProdCards from "./favouriteProdCards";
+import {devURL} from "../DevProps";
+import {Fetching} from "./fetching/Fetching";
 
 const Favourites = () => {
     const favourite = useSelector(state => state.redFav)
@@ -10,20 +12,34 @@ const Favourites = () => {
     // console.log(favourite);
     const dispatch = useDispatch()
     const {getData} = FetchLogic()
-    useEffect(() => {
-        if (prods.length == 0) return;
-        let temporary = []
-        for (let i = 0; i < prods.length; i++) {
-            getData(`api/product/${prods[i]}`)
-                .then(data => data.json())
-                .then(data => temporary.push(data))
-                .catch(err => console.log(err.toString()))
-        }
-        setTimeout(() => {
-            temporary.length !== 0 ? dispatch(fetchFavourite(temporary)) : console.log('Empty Favourite', temporary);
-        }, 1000)
 
-    }, [prods.length])
+    useEffect(() => {
+            if (prods.length == 0) return;
+            let temporary = []
+            let iter = 0
+            for (let i = 0; i < prods.length; i++) {
+                getData(`${devURL}api/product/${prods[i]}`)
+                    .then(data => data.json())
+                    .then(data => temporary.push(data))
+                    .catch(err => console.log(err.toString()))
+                    .finally(() => {
+                        iter++;
+                        onFinaly();
+                    })
+            }
+
+            function onFinaly() {
+                if (temporary.length === prods.length) {
+                    console.log(iter, prods.length)
+                    if (iter === prods.length) {
+                        console.log(temporary);
+                        temporary.length !== 0 && dispatch(fetchFavourite(temporary))
+                        // set load false
+                    }
+                }
+            }
+        }, [prods.length]
+    )
 
     return (
         <div className={'justify-center flex flex-col items-center min-h-[100vh]'}>

@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {postData} from "./fetching/ajax";
+import {postData} from "./fetching/fetch";
 
 const Cart = () => {
 

@@ -1,16 +1,12 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import ProductsCards from "./productsCards";
-import {FetchLogic} from "./fetching/ajax";
 import FindLogic from "./Logic/FindLogic";
-import {Outlet} from "react-router-dom";
 
 function Glavnaya() {
     const {temporary} = FindLogic()
     console.log(temporary);
-    const dispatch = useDispatch()
     console.log('renderGlavnaya')
-    const {getData} = FetchLogic()
 
     return (
         <div className='min-h-[100vh]'>
@@ -20,7 +16,6 @@ function Glavnaya() {
                     return <ProductsCards data={el} key={el.id}/>
                 })}
             </div>
-            <Outlet/>
         </div>
     )
 }

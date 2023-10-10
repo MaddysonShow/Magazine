@@ -1,16 +1,22 @@
 import React, {useState} from 'react';
 import FAC from "./FavouriteAndCart/FAC";
 import RatingStarsFunc from "./RatingStarsFuncAndMenu/RatingStarsFunc";
+import {useNavigate} from "react-router-dom";
 
 const FavouriteProdCards = ({data}) => {
     const {setFavourite, getFavourite, getCart, setCart} = FAC()
     const [forRerender, setRender] = useState(false)
+    const navigate = useNavigate()
+
+    function toSingle() {
+        navigate(`/product/?id=${data.id}`)
+    }
 
     return (
         <div className="max-w-lg rounded overflow-hidden shadow-lg mb-4 mt-4">
             <img className="w-full" src={data.image} alt="Sunset in the mountains"/>
                 <div className="px-6 py-4">
-                    <div className="font-bold text-xl mb-2">{data.title}</div>
+                    <div className="font-bold text-xl mb-2 hover:cursor-pointer" onClick={toSingle}>{data.title}</div>
                     <p className="text-gray-700 text-base">
                         {data.description}
                     </p>

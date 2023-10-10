@@ -59,15 +59,15 @@ const Fac = () => {
     }
     function LikeIsFull () {
         if (localStorage.favourite) {
-            if (JSON.parse(localStorage.favourite) != 0) return likeFull
+            if (JSON.parse(localStorage.favourite).length != 0) {return likeFull}
         }
-        else return likeEmpty
+            return likeEmpty
     }
     function CartIsFull () {
         if (localStorage.cart) {
-            if (JSON.parse(localStorage.cart) != 0) return shoppingFull
+            if (JSON.parse(localStorage.cart).length != 0) return shoppingFull
         }
-        else return shoppingEmpty
+        return shoppingEmpty
     }
 
     return {getFavourite, setFavourite, setCart, getCart, LikeIsFull, CartIsFull}

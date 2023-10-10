@@ -1,8 +1,8 @@
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import React, {useEffect, useRef, useState} from "react";
 import logo from "../media/BugLogoMarket.png";
 import styles from '../styles.module/NavBar.module.css'
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {switchShowCatalog} from "../Redux/EventsReducer";
 import RightMenu from "./RatingStarsFuncAndMenu/rightMenu";
 import Fac from "./FavouriteAndCart/FAC";
@@ -47,7 +47,7 @@ const NavBar = () => {
 
     return (
         <nav className={direction == 'down' ? styles.navBarnonSticky : styles.navBarSticky} ref={NavRef}>
-            <Link to={'/main'} datatooltip={'Home'}><img src={logo} alt={'LOGOTYPE'} style={{height: '4vh'}}/></Link>
+            <Link to={'/main'} datatooltip={'Home'} className={'h-[100%]'}><img src={logo} alt={'LOGOTYPE'} className={'h-[90%]'}/></Link>
             <button
                 className={"ml-5 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded active:bg-amber-500"}
                 onClick={(e) => {

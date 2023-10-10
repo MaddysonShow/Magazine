@@ -10,8 +10,8 @@ export const FindLogic = () => {
     temporary.data = fromStore.data
     const getSearchUrl = searchParams.get('search')
     const getCatalogUrl = searchParams.get('category')
-    console.log(getSearchUrl);
-    console.log(getCatalogUrl);
+    // console.log(getSearchUrl);
+    // console.log(getCatalogUrl);
 
     if (getSearchUrl && !getCatalogUrl) {
         if (getSearchUrl.length >= 1) {

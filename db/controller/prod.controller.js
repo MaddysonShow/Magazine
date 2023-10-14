@@ -4,7 +4,7 @@ class ProdController {
     async createProduct(req, res) {
         const {title, price, description, category, image, rate, count, password} = req.body
         console.log(title, price, description, category, image, rate, count, password)
-        if (password === 'maddyson') {
+        if (password === ' ') {
             const newProduct = await db.query(`INSERT INTO products (title, price, description, category, image, rate, count) values ($1, $2, $3,$4,$5,$6,$7) RETURNING *`, [title, price, description,category,image,rate,count])
             res.json(newProduct.rows[0])
         }

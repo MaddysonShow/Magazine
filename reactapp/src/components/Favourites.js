@@ -30,15 +30,15 @@ const Favourites = () => {
 
             function onFinaly() {
                 if (temporary.length === prods.length) {
-                    console.log(iter, prods.length)
+                    // console.log(iter, prods.length)
                     if (iter === prods.length) {
-                        console.log(temporary);
+                        // console.log(temporary);
                         temporary.length !== 0 && dispatch(fetchFavourite(temporary))
                         // set load false
                     }
                 }
             }
-        }, [prods.length]
+        }, []
     )
 
     return (

@@ -1,11 +1,11 @@
 import {configureStore} from "@reduxjs/toolkit";
-import {red, redFav} from "./reducers";
+import {red, redFav, test123} from "./reducers";
 import {Events} from './EventsReducer'
 import {productApi} from "../components/fetching/RTQ";
 
 export const store = configureStore({
     reducer: {
-        red: red,
+        red,
         Events: Events,
         redFav,
         [productApi.reducerPath] : productApi.reducer

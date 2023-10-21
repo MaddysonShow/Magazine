@@ -1,7 +1,9 @@
-import React from 'react';
-import star from "../../media/star.svg";
+// @ts-ignore
+import React, {FC} from 'react';
+// @ts-ignore
+import star from '../../media/star.svg';
+// @ts-ignore
 import starColored from "../../media/starColored.svg";
-
 
 export function RatingStarsFunc(data) {
     const stars = ['', '', '', '', '']

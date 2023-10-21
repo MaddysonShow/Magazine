@@ -7,8 +7,12 @@ import {switchShowCatalog} from "../Redux/EventsReducer";
 import RightMenu from "./RatingStarsFuncAndMenu/rightMenu";
 import Fac from "./FavouriteAndCart/FAC";
 import MyInput from "./UI/MyInput";
+import {productApi} from "./fetching/RTQ";
 
 const NavBar = () => {
+
+    const {data: catalog, isFetching, isError} = productApi.endpoints.getCatalog.useQuery()
+
     const [direction, setDir] = useState("down");
     const dispatch = useDispatch()
 
@@ -54,13 +58,13 @@ const NavBar = () => {
                     showCatalog(e)
                 }}>Catalog
             </button>
-            <MyInput direction={direction}/>
+            <MyInput direction={direction} catalog={catalog}/>
             <span className={'flex ml-auto'}>
                 <Link to={'/liked'} className={'mr-5 hover:'} datatooltip={'Favourites'}><img
                     src={LikeIsFull()}/></Link>
                 <Link to={'/shopingcart'} className={'mr-5'} datatooltip={'To Cart'}><img src={CartIsFull()}/></Link>
             </span>
-            <RightMenu isShown={direction}/>
+            <RightMenu isShown={direction} catalogItems={catalog}/>
         </nav>
     );
 };

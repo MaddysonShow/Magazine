@@ -1,21 +1,18 @@
 import React, {memo, useEffect, useRef} from 'react';
 import styles from '../../styles.module/RightMenu.module.css'
 import {useSelector} from "react-redux";
-import CatalogEntry from "../../CatalogRoute/CatalogRoute";
 import {useNavigate} from "react-router-dom";
 
-const RightMenu = ({isShown}) => {
+const RightMenu = ({isShown, catalogItems}) => {
         const state = useSelector(state1 => state1.Events)
-        const catalog = CatalogEntry()
-        // console.log(state);
-        // console.log(isShown)
+
         const navigate = useNavigate()
         function NavTo(category) {
             navigate(`/main/?category=${category}`)
         }
 
-        // Динамическое меню, берем из карточек Фетченных продуктов их категорию и отрисовываем в боковом меню, а в Поисковик MyInput
-        // выводим в том числе и категории и сами совпадающие карточки товаров
+        // Динамическое меню, берем из БД категории и отрисовываем в боковом меню, а в Поисковик MyInput
+        // выводим в том числе и категории и сами совпадающие карточки товаров(не реализовано 20.10.2023)
 
         return (
             <div
@@ -27,19 +24,16 @@ const RightMenu = ({isShown}) => {
                     </div>
                     <hr className="my-3 border-gray-300"/>
                     {
-                        catalog.map((el, ind) => {
-                            return (<div className="flex hover:bg-gray-100 py-1 px-2 rounded" key={el+ind}
-                            onClick={()=> {NavTo(el)}}>
-                                <div className="w-8 text-gray-900"><span className="text-xs">{ind+1}</span></div>
-                                <div># {el}</div>
+                        catalogItems && catalogItems.map((el, ind) => {
+                            return (<div className="flex hover:bg-gray-100 py-1 px-2 rounded" key={el.category + ind}
+                                         onClick={() => {
+                                             NavTo(el.category)
+                                         }}>
+                                <div className="w-8 text-gray-900"><span className="text-xs">{ind + 1}</span></div>
+                                <div># {el.category}</div>
                             </div>)
                         })
                     }
-
-                    {/*<div className="flex hover:bg-gray-100 py-1 px-2 rounded">*/}
-                    {/*    <div className="w-8 text-gray-900"><span className="text-xs">1</span></div>*/}
-                    {/*    <div># Heading 1</div>*/}
-                    {/*</div>*/}
                     <hr className="my-3 border-gray-300"/>
                 </div>
             </div>

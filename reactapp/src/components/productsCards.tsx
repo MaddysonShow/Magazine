@@ -1,19 +1,33 @@
-import React, {useState} from 'react';
+// @ts-ignore
+import React, {FC, useState} from 'react';
 import '../index.css'
 import '../styles.module/ProductCards.module.css'
 import RatingStarsFunc from "./RatingStarsFuncAndMenu/RatingStarsFunc";
-import cartEmpty from '../media/shoppingEmpty.png'
 import FAC from "./FavouriteAndCart/FAC";
 import {useNavigate} from "react-router-dom";
 
+interface IData {
+    data: {
+        id: number
+        title: string
+        price: string
+        description: string
+        category: string
+        image: string
+        rate: string
+        count: string
+        password: any
+    }
+}
 
-const ProductsCards = ({data}) => {
+const ProductsCards: FC = ({data}: IData)=> {
     // console.log('PCrender');
-    const [forRerender, setRender] = useState(false)
+
+    const [forRerender, setRender] = useState<boolean>(false)
     const navigate = useNavigate()
-    const RatingStars = (data) => RatingStarsFunc(data)
+    const RatingStars = (data: string) => RatingStarsFunc(data)
     const {setFavourite, getFavourite, getCart, setCart} = FAC()
-    const toSingleProduct = (e) => {
+    const toSingleProduct = (e: React.MouseEvent<HTMLElement>) => {
         e.stopPropagation()
         navigate(`/product/?id=${data.id}`)
     }

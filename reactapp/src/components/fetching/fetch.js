@@ -1,5 +1,3 @@
-import {useDispatch} from "react-redux";
-import {fetchProducts} from "../../Redux/reducers";
 
 var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");

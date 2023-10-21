@@ -1,16 +1,14 @@
-import React from 'react';
-import {useSearchParams} from "react-router-dom";
-import {Fetching} from "./fetching/Fetching";
+// @ts-ignore
+import React, {FC} from 'react';
+import {useSingleItem} from "./fetching/Fetching";
 
-const SingleItem = () => {
+const SingleItem:FC = () => {
 
-    let [searchParams, setSearchParams] = useSearchParams();
-    let a = searchParams.get('id')
 
-    const {isFetching1, isError1, data1} = Fetching()
-    console.log(data1);
+    const {isFetching1, isError1, data1} = useSingleItem()
+    // console.log(data1);
 
-    const price = function* () {
+    const price = function* () :Generator<number | string> {
         let fp = 0
         let sp = '.00'
         if (!data1) {yield fp}
@@ -29,14 +27,14 @@ const SingleItem = () => {
     }
 
     const temp = {
-        "id": data1?.id ?? ' ',
-        "title": data1?.title ?? ' ',
+        id: data1?.id ?? ' ',
+        title: data1?.title ?? ' ',
         price: price(),
-        "description": data1?.description ?? ' ',
-        "category": data1?.category ?? ' ',
-        "image": data1?.image ?? ' ',
-        "rate": data1?.rate ?? ' ',
-        "count": data1?.count ?? ' '
+        description: data1?.description ?? ' ',
+        category: data1?.category ?? ' ',
+        image: data1?.image ?? ' ',
+        rate: data1?.rate ?? ' ',
+        count: data1?.count ?? ' '
     }
 
     return (

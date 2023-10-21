@@ -3,33 +3,26 @@ import {Debounce} from '../Logic/Debouncer'
 import FastFindLogic from "../Logic/FastFindLogic";
 import {useNavigate} from "react-router-dom";
 
-const MyInput = ({direction}) => {
+const MyInput = ({direction, catalog}) => {
+
     const [search, setSearch] = useState('')
     const debounce = Debounce(search)
-    const FastTemporary = FastFindLogic(debounce)
+    const FastTemporary = FastFindLogic(debounce.length < 2 ? '' : debounce)
+    // console.log(FastTemporary);
     const navigate = useNavigate()
+
+    const fastCategory = useMemo(() => {
+        const temp = []
+        if (!catalog || debounce.length <= 2) {return temp}
+        for (let i = 0; i < catalog.length; i++) {
+            catalog[i].category.toLowerCase().includes(debounce.toLowerCase()) && temp.push(catalog[i].category)
+        }
+        return temp
+    }, [debounce])
 
     const onChange = (e) => {
         setSearch(e.target.value)
     }
-
-    const uniqCatalog = useMemo(() => {
-        const temp = []
-        for (let i = 0; i < FastTemporary.data.length; i++) {
-            if (!temp.includes(FastTemporary.data[i].category)) {
-                temp.push(FastTemporary.data[i].category)
-            }
-        }
-        return temp
-    }, [debounce])
-
-    const FastItems = useMemo(() => {
-        const temp = []
-        for (let i = 0; i < FastTemporary.data.length; i++) {
-            temp.push([FastTemporary.data[i].title, FastTemporary.data[i].id])
-        }
-        return temp
-    }, [debounce])
 
 
     const find = (e, searchCategory, singleProduct, globalSearch) => {
@@ -54,7 +47,7 @@ const MyInput = ({direction}) => {
                     <input type="search"
                            className={debounce.length < 2 ? "rounded-lg block p-2.5 w-full z-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                                : "rounded-t-lg block p-2.5 w-full z-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"}
-                           placeholder="Search T-shirt, jewelery, MajorBugs and more..." required value={search}
+                           placeholder="Search T-shirt, jewelery, MajorBugs and more..." value={search}
                            onChange={(e) => onChange(e)}
                     />
                     <button type="submit"
@@ -78,25 +71,28 @@ const MyInput = ({direction}) => {
                         <div className='absolute w-[100%] justify-center flex flex flex-col'>
                             {
                                 // TITLE PRODUCTS//////////////////////////////////////////
-                                FastItems.map((el, ind) => {
+                               FastTemporary.map((el, ind) => {
+                                    // console.log(el.title);
                                     return <span className={direction == 'up' ?
                                         'p-2 bg-gray-700 bg-opacity-50 justify-center text-gray-50 text-md border-1 border border-gray-300 border-opacity-50 dark:border-l-gray-700  dark:border-gray-600 line-clamp-1 hover:cursor-pointer'
                                         : 'p-2 bg-gray-700 justify-center text-gray-50 text-md border-1 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:border-l-gray-700  dark:border-gray-600 dark:focus:border-blue-500 line-clamp-1 hover:cursor-pointer'}
                                                  onClick={(e) => {
-                                                     console.log(el);
-                                                     find(e, null, el[1])
+                                                     // console.log(el.title);
+                                                     find(e, null, el.id)
                                                      // ТУТ НАДО ЧТОБЫ ЮЗЕР ШЕЛ СРАЗУ НА ЕДИНИЧНЫЙ ТОВАР
                                                  }}
-                                                 key={ind + el}>{el[0]}</span>
-                                })}
+                                                 key={ind + el.id}>{el.title}</span>
+                                })
+                            }
                             {
                                 // УНИКАЛЬНЫЕ ИМЕНА КАТЕГОРИЙ///////////////////////////
-                                uniqCatalog.map((el, ind) => {
+                                fastCategory.map((el, ind) => {
+                                    // console.log(el);
                                     return <span className={direction == 'up' ?
                                         'p-2 bg-gray-700 bg-opacity-50 justify-center text-gray-50 text-md border-1 border border-gray-300 border-opacity-50 dark:border-l-gray-700  dark:border-gray-600 line-clamp-1 hover:cursor-pointer'
                                         : 'p-2 bg-gray-700 justify-center text-gray-50 text-md border-1 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:border-l-gray-700  dark:border-gray-600 dark:focus:border-blue-500 line-clamp-1 hover:cursor-pointer'}
                                                  onClick={(e) => {
-                                                     console.log(el);
+                                                     // console.log(el);
                                                      find(e, el)
                                                  }}
                                                  key={ind + el}>Category: {el}</span>

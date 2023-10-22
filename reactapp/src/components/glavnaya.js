@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import ProductsCards from "./productsCards.tsx";
+import ProductsCards from "./productsCards.jsx";
 import {useFindLogic} from "./Logic/FindLogic";
-import Pagination from "./Pagination.tsx";
+import Pagination from "./Pagination.jsx";
 import Loading from "./UI/Loading";
 import {maxCount} from "../DevProps";
 

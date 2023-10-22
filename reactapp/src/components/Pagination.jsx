@@ -2,12 +2,8 @@
 import React, {FC, memo} from 'react';
 import {useSelector} from "react-redux";
 
-interface IProps {
-    onClick: (number: number) => {},
-    pageCount: number,
-    currentPage: number
-}
-const Pagination: FC<IProps> = memo(({onClick, pageCount, currentPage}) => {
+
+const Pagination = memo(({onClick, pageCount, currentPage}) => {
 
     // console.log('paginationRender');
 

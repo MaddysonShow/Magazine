@@ -2,13 +2,13 @@
 import React, {FC} from 'react';
 import {useSingleItem} from "./fetching/Fetching";
 
-const SingleItem:FC = () => {
+const SingleItem = () => {
 
 
     const {isFetching1, isError1, data1} = useSingleItem()
     // console.log(data1);
 
-    const price = function* () :Generator<number | string> {
+    const price = function* () {
         let fp = 0
         let sp = '.00'
         if (!data1) {yield fp}

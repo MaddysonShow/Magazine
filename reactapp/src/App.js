@@ -6,7 +6,7 @@ import Favourites from "./components/Favourites";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 import FirstAlarm from "./components/FirstAlarm";
-import SingleItem from "./components/SingleItem.tsx";
+import SingleItem from "./components/SingleItem.jsx";
 import Loading from "./components/UI/Loading";
 import useFindLogic from "./components/Logic/FindLogic";
 

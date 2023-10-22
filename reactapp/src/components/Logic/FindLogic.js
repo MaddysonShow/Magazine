@@ -62,6 +62,7 @@ export const useFindLogic = (page, setPage, lastTemporary, setlastTemporary) => 
             page: page}, {skip: false})
         isLoading = isFetching
         Error = isError
+        console.log(currentData);
         if (lastTemporary?.showMore) {
             temporary = {
                 value: lastTemporary['value'].concat(currentData?.value ?? []),

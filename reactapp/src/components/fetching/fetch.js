@@ -2,12 +2,11 @@
 var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
-export function FetchLogic() {
-    async function getData(url) {
+    export async function getData(url) {
         return await fetch(`${url}`)
     }
     return {getData}
-}
+
 
 
 export async function postData(url, body) {

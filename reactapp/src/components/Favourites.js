@@ -1,30 +1,28 @@
 import React, {useEffect, useState} from 'react';
 import {fetchFavourite} from "../Redux/reducers";
 import {useDispatch, useSelector} from "react-redux";
-import {FetchLogic} from "./fetching/fetch";
 import FavouriteProdCards from "./favouriteProdCards";
 import {devURL} from "../DevProps";
-import {Fetching} from "./fetching/Fetching";
+import {getData} from "./fetching/fetch";
 
 const Favourites = () => {
     const favourite = useSelector(state => state.redFav)
     const [prods, setProds] = useState(localStorage.favourite ? JSON.parse(localStorage.favourite) ?? [] : [])
     // console.log(favourite);
     const dispatch = useDispatch()
-    const {getData} = FetchLogic()
 
     useEffect(() => {
             if (prods.length == 0) return;
             let temporary = []
             let iter = 0
-            for (let i = 0; i < prods.length; i++) {
+            for await (let i = 0; i < prods.length; i++) {
                 getData(`${devURL}api/product/${prods[i]}`)
                     .then(data => data.json())
                     .then(data => temporary.push(data))
                     .catch(err => console.log(err.toString()))
                     .finally(() => {
                         iter++;
-                        onFinaly();
+                        if (iter === temporary.length) onFinaly();
                     })
             }
 

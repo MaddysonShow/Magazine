@@ -5,7 +5,7 @@ myHeaders.append("Content-Type", "application/json");
     export async function getData(url) {
         return await fetch(`${url}`)
     }
-    return {getData}
+    // return {getData}
 
 
 

@@ -15,7 +15,7 @@ const Favourites = () => {
             if (prods.length == 0) return;
             let temporary = []
             let iter = 0
-            for await (let i = 0; i < prods.length; i++) {
+            for (let i = 0; i < prods.length; i++) {
                 getData(`${devURL}api/product/${prods[i]}`)
                     .then(data => data.json())
                     .then(data => temporary.push(data))

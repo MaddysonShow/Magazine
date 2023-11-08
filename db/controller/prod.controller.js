@@ -1,7 +1,7 @@
 const db = require('../../dbase')
-    const maxCount = 3
-class ProdController {
 
+class ProdController {
+    maxCount = 3
     async createProduct(req, res) {
         const {title, price, description, category, image, rate, count, password} = req.body
         console.log(title, price, description, category, image, rate, count, password)
@@ -25,8 +25,8 @@ class ProdController {
             res.json(getProduct.rows)
         }
         else {
-            page *= maxCount
-            const getProduct = await db.query(`SELECT * FROM products ORDER BY id LIMIT ${maxCount} OFFSET ${page}`)
+            page *= this.maxCount
+            const getProduct = await db.query(`SELECT * FROM products ORDER BY id LIMIT ${this.maxCount} OFFSET ${page}`)
             res.setHeader('Access-Control-Expose-Headers', 'X-Total-Count, anything')
             res.setHeader('anything', 4242)
             res.setHeader('X-Total-Count', totalCount.rows[0].count);
@@ -56,9 +56,9 @@ class ProdController {
         const catalog = req.params.value
         let {page} = req.headers
         // console.log(page, catalog)
-        page *= maxCount
+        page *= this.maxCount
         const productByCategory =
-            await db.query(`SELECT * FROM products where category = $1 ORDER BY id LIMIT ${maxCount} OFFSET ${page}`, [catalog])
+            await db.query(`SELECT * FROM products where category = $1 ORDER BY id LIMIT ${this.maxCount} OFFSET ${page}`, [catalog])
         const totalCount = await db.query(`SELECT count(category) FROM products WHERE category = $1`, [catalog])
         // ищем элементы из category по точному имени
         res.setHeader('Access-Control-Expose-Headers', 'X-Total-Count, anything')
@@ -71,8 +71,8 @@ class ProdController {
         const search = req.params.value
         let {page} = req.headers
         // console.log(page, search)
-        page *= maxCount
-        const productBySearch = await db.query(`SELECT * FROM products where LOWER(title) LIKE LOWER('%${search}%') ORDER BY id LIMIT ${maxCount} OFFSET ${page}`)
+        page *= this.maxCount
+        const productBySearch = await db.query(`SELECT * FROM products where LOWER(title) LIKE LOWER('%${search}%') ORDER BY id LIMIT ${this.maxCount} OFFSET ${page}`)
         const totalCount = await db.query(`SELECT count(title) FROM products WHERE LOWER(title) LIKE LOWER('%${search}%')`)
         // ищем из ТИТЛЕ итемы без дубликатов?)))) выборка по примерной части запроса url
         res.setHeader('Access-Control-Expose-Headers', 'X-Total-Count, anything')

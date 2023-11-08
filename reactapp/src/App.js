@@ -9,6 +9,7 @@ import FirstAlarm from "./components/FirstAlarm";
 import SingleItem from "./components/SingleItem.jsx";
 import Loading from "./components/UI/Loading";
 import useFindLogic from "./components/Logic/FindLogic";
+import Threevision from "./components/threevision";
 
 function App() {
     const firstAlarm = localStorage.firstalarm
@@ -19,6 +20,7 @@ function App() {
             {!FA && <FirstAlarm setFa={setFA}/>}
             <NavBar/>
             <Routes>
+                <Route path='/3dvision' element={<Threevision/>}/>
                 <Route path='/shopingcart' element={<Cart/>}/>
                 <Route path='/liked' element={<Favourites/>}/>
                 <Route path='/main' element={<Glavnaya/>}/>

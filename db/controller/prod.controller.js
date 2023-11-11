@@ -25,8 +25,8 @@ class ProdController {
             res.json(getProduct.rows)
         }
         else {
-            page *= this.maxCount
-            const getProduct = await db.query(`SELECT * FROM products ORDER BY id LIMIT ${this.maxCount} OFFSET ${page}`)
+            page *= 3
+            const getProduct = await db.query(`SELECT * FROM products ORDER BY id LIMIT ${3} OFFSET ${page}`)
             res.setHeader('Access-Control-Expose-Headers', 'X-Total-Count, anything')
             res.setHeader('anything', 4242)
             res.setHeader('X-Total-Count', totalCount.rows[0].count);
@@ -56,9 +56,9 @@ class ProdController {
         const catalog = req.params.value
         let {page} = req.headers
         // console.log(page, catalog)
-        page *= this.maxCount
+        page *= 3
         const productByCategory =
-            await db.query(`SELECT * FROM products where category = $1 ORDER BY id LIMIT ${this.maxCount} OFFSET ${page}`, [catalog])
+            await db.query(`SELECT * FROM products where category = $1 ORDER BY id LIMIT ${3} OFFSET ${page}`, [catalog])
         const totalCount = await db.query(`SELECT count(category) FROM products WHERE category = $1`, [catalog])
         // ищем элементы из category по точному имени
         res.setHeader('Access-Control-Expose-Headers', 'X-Total-Count, anything')
@@ -71,8 +71,8 @@ class ProdController {
         const search = req.params.value
         let {page} = req.headers
         // console.log(page, search)
-        page *= this.maxCount
-        const productBySearch = await db.query(`SELECT * FROM products where LOWER(title) LIKE LOWER('%${search}%') ORDER BY id LIMIT ${this.maxCount} OFFSET ${page}`)
+        page *= 3
+        const productBySearch = await db.query(`SELECT * FROM products where LOWER(title) LIKE LOWER('%${search}%') ORDER BY id LIMIT ${3} OFFSET ${page}`)
         const totalCount = await db.query(`SELECT count(title) FROM products WHERE LOWER(title) LIKE LOWER('%${search}%')`)
         // ищем из ТИТЛЕ итемы без дубликатов?)))) выборка по примерной части запроса url
         res.setHeader('Access-Control-Expose-Headers', 'X-Total-Count, anything')

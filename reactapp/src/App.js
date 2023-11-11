@@ -10,25 +10,30 @@ import SingleItem from "./components/SingleItem.jsx";
 import Loading from "./components/UI/Loading";
 import useFindLogic from "./components/Logic/FindLogic";
 import Threevision from "./components/threevision";
+import {useSelector} from "react-redux";
 
 function App() {
     const firstAlarm = localStorage.firstalarm
     const [FA, setFA] = useState(firstAlarm == undefined ? false : true)
+    const data = useSelector(state => state.Events.lock)
+
+    if (data === true) {
+        return null
+    }
 
     return (
-        <div className='min-h-[100vh]'>
-            {!FA && <FirstAlarm setFa={setFA}/>}
-            <NavBar/>
-            <Routes>
-                <Route path='/3dvision' element={<Threevision/>}/>
-                <Route path='/shopingcart' element={<Cart/>}/>
-                <Route path='/liked' element={<Favourites/>}/>
-                <Route path='/main' element={<Glavnaya/>}/>
-                <Route path='*' element={<Glavnaya/>}/>
-                <Route path='/product' element={<SingleItem/>}/>
-            </Routes>
-            <Footer/>
-        </div>
+    <div className='min-h-[100vh]'>
+        {!FA && <FirstAlarm setFa={setFA}/>}
+        <NavBar/>
+        <Routes>
+            <Route path='/shopingcart' element={<Cart/>}/>
+            <Route path='/liked' element={<Favourites/>}/>
+            <Route path='/main' element={<Glavnaya/>}/>
+            <Route path='*' element={<Glavnaya/>}/>
+            <Route path='/product' element={<SingleItem/>}/>
+        </Routes>
+        <Footer/>
+    </div>
     );
 }
 

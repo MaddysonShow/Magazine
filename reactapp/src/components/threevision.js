@@ -25,8 +25,8 @@ const Threevision = () => {
     let pathMTL
 
     try {
-       pathOBJ = require(`./OBJ/${params.get('search')}/uov.obj`)
-       pathMTL = require(`./OBJ/${params.get('search')}/uov.mtl`)
+       pathOBJ = require(`../../OBJ/${params.get('search')}/uov.obj`)
+       pathMTL = require(`../../OBJ/${params.get('search')}/uov.mtl`)
     }
     catch (e) {
         alert(e)

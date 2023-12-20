@@ -1,6 +1,6 @@
 // @ts-ignore
 import React, {FC, useState} from 'react';
-import '../index.css'
+// import '../index.scss'
 import '../styles.module/ProductCards.module.css'
 import RatingStarsFunc from "./RatingStarsFuncAndMenu/RatingStarsFunc";
 import FAC from "./FavouriteAndCart/FAC";

@@ -1,0 +1,125 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  margin: auto auto 0 auto !important;
+
+  * .footer-item__list--contacts {
+    // margin-top: 12px;
+    gap: 21px;
+  }
+}
+.footer__main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  & > .footer-item:last-child {
+    align-items: flex-end;
+    text-align: right;
+    & * {
+      justify-content: flex-end;
+    }
+  }
+}
+.footer__section {
+  display: flex;
+  flex-direction: row;
+}
+.footer__list-line {
+  display: flex;
+  flex-direction: row;
+  gap: 52px;
+}
+.footer__copyright {
+  margin-top: 35px;
+}
+.footer__copyright,
+.footer__copyright-link {
+  display: flex;
+  flex-direction: column;
+  color: #e4e5ea;
+  font-family: "Montserrat";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 15px;
+  text-align: right;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.footer__copyright-link {
+  text-decoration: underline;
+}
+.footer-item {
+  display: flex;
+  flex-direction: column;
+  @media only screen and (min-width: 1201px) {
+    & + & {
+      margin-left: 98px;
+    }
+  }
+
+  &__title {
+    color: #656566;
+    font-family: "Inter";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    line-height: 17px;
+    text-transform: uppercase;
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    list-style-type: none;
+    gap: 10px;
+  }
+}
+@media only screen and (min-width: 0px) and (max-width: 1200px) {
+  .footer {
+    margin: 45px auto 0 auto !important;
+  }
+  .footer__main {
+    flex-direction: column;
+  }
+  .footer * {
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+  }
+  .footer__section,
+  .footer__container {
+    flex-direction: column;
+  }
+  .footer__copyright {
+    display: flex;
+    flex-direction: column;
+    margin-top: 47px;
+    gap: 5px;
+  }
+  .footer-item + .footer-item,
+  .footer__section + .footer-item {
+    margin-top: 26px;
+  }
+
+  .footer-item__title {
+    letter-spacing: -0.7px;
+  }
+  .footer-item__list {
+    gap: 9px;
+    & * {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 17px;
+    }
+  }
+
+  .footer__list-line {
+    gap: 47px;
+  }
+
+  .footer-item__list--contacts {
+    gap: 14px !important;
+  }
+}

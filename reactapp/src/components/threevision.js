@@ -19,6 +19,9 @@ const Threevision = () => {
 
     useEffect(() => {
         dispatch(locker(true))
+        if (document.getElementById('root')?.classList?.contains('body')) {
+            document.getElementById('root').classList.remove('body')
+        }
     }, []);
 
     let pathOBJ
@@ -36,12 +39,9 @@ const Threevision = () => {
 
     return (
         <div className='all'>
-            {(manual || force) && <div style={{position: "absolute", top: 0, left: 0, right: 0, bottom: 0, background: 'black', zIndex: '99',
-                opacity: '0.9', display: "flex", justifyContent: "center", alignItems: 'center'}}
+            {(manual || force) && <div className={'modalWindowBack'}
                            onClick={() => {close(true)}}>
-                <div style={{width: '50%', height: '50%', background: 'white', zIndex: '101', display: "flex",
-                    flexDirection: "column",
-                    justifyContent: 'center', alignItems: "center"}}>
+                <div className={'modalWindowFront'}>
                     {force && <span className='loader'></span>}
                     <ul style={{fontSize: '17pt'}}>
                         Управление:

@@ -1,0 +1,32 @@
+.socials {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  &--header {
+    gap: 32px;
+  }
+}
+
+.socials__item {
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  transition: fill 0.2s ease-in;
+  transition-property: all;
+
+  & svg:hover path,
+  polygon,
+  circle {
+    fill: rgb(249, 137, 0);
+  }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 1200px) {
+  .socials {
+    gap: 21px;
+  }
+  .socials__item svg {
+    width: 19px;
+    height: 19px;
+  }
+}

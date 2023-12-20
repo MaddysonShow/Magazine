@@ -4,7 +4,7 @@ import NavBar from "./components/NavBar";
 import Glavnaya from "./components/glavnaya";
 import Favourites from "./components/Favourites";
 import Cart from "./components/Cart";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer/Footer";
 import FirstAlarm from "./components/FirstAlarm";
 import SingleItem from "./components/SingleItem.jsx";
 import Loading from "./components/UI/Loading";
@@ -22,15 +22,15 @@ function App() {
     }
 
     return (
-    <div className='min-h-[100vh]'>
-        {!FA && <FirstAlarm setFa={setFA}/>}
+    <div>
+        {/*{!FA && <FirstAlarm setFa={setFA}/>}*/}
         <NavBar/>
         <Routes>
-            <Route path='/shopingcart' element={<Cart/>}/>
-            <Route path='/liked' element={<Favourites/>}/>
+            {/*<Route path='/shopingcart' element={<Cart/>}/>*/}
+            {/*<Route path='/liked' element={<Favourites/>}/>*/}
             <Route path='/main' element={<Glavnaya/>}/>
-            <Route path='*' element={<Glavnaya/>}/>
             <Route path='/product' element={<SingleItem/>}/>
+            <Route path='*' element={<Glavnaya/>}/>
         </Routes>
         <Footer/>
     </div>
